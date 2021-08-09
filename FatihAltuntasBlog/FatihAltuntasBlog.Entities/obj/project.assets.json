@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {}
+    "net5.0": {
+      "FatihAltuntasBlog.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/FatihAltuntasBlog.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FatihAltuntasBlog.Shared.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "FatihAltuntasBlog.Shared/1.0.0": {
+      "type": "project",
+      "path": "../FatihAltuntasBlog.Shared/FatihAltuntasBlog.Shared.csproj",
+      "msbuildProject": "../FatihAltuntasBlog.Shared/FatihAltuntasBlog.Shared.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net5.0": []
+    "net5.0": [
+      "FatihAltuntasBlog.Shared >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Kodiks\\.nuget\\packages\\": {}
@@ -33,7 +52,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Kodiks\\Documents\\FatihAltuntasBlog\\FatihAltuntasBlog\\FatihAltuntasBlog.Shared\\FatihAltuntasBlog.Shared.csproj": {
+              "projectPath": "C:\\Users\\Kodiks\\Documents\\FatihAltuntasBlog\\FatihAltuntasBlog\\FatihAltuntasBlog.Shared\\FatihAltuntasBlog.Shared.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
