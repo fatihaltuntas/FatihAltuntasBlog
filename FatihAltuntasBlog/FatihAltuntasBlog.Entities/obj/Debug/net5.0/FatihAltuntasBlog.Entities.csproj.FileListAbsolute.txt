@@ -1,0 +1,15 @@
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Entities\bin\Debug\net5.0\FatihAltuntasBlog.Entities.deps.json
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Entities\bin\Debug\net5.0\FatihAltuntasBlog.Entities.dll
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Entities\bin\Debug\net5.0\ref\FatihAltuntasBlog.Entities.dll
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Entities\bin\Debug\net5.0\FatihAltuntasBlog.Entities.pdb
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Entities\bin\Debug\net5.0\FatihAltuntasBlog.Shared.dll
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Entities\bin\Debug\net5.0\FatihAltuntasBlog.Shared.pdb
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Entities\obj\Debug\net5.0\FatihAltuntasBlog.Entities.csproj.AssemblyReference.cache
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Entities\obj\Debug\net5.0\FatihAltuntasBlog.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Entities\obj\Debug\net5.0\FatihAltuntasBlog.Entities.AssemblyInfoInputs.cache
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Entities\obj\Debug\net5.0\FatihAltuntasBlog.Entities.AssemblyInfo.cs
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Entities\obj\Debug\net5.0\FatihAltuntasBlog.Entities.csproj.CoreCompileInputs.cache
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Entities\obj\Debug\net5.0\FatihAltuntasBlog.Entities.csproj.CopyComplete
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Entities\obj\Debug\net5.0\FatihAltuntasBlog.Entities.dll
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Entities\obj\Debug\net5.0\ref\FatihAltuntasBlog.Entities.dll
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Entities\obj\Debug\net5.0\FatihAltuntasBlog.Entities.pdb

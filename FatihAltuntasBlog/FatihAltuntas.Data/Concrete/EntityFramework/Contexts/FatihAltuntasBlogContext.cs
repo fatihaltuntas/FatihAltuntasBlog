@@ -19,7 +19,7 @@ namespace FatihAltuntas.Data.Concrete.EntityFramework.Contexts
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("unutma");
+            optionsBuilder.UseSqlServer(@"Server=localhost; Database=FatihAltuntasBlog; User Id=sa;Password=interpressW001;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -1,0 +1,12 @@
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Services\bin\Debug\net5.0\FatihAltuntasBlog.Services.deps.json
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Services\bin\Debug\net5.0\FatihAltuntasBlog.Services.dll
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Services\bin\Debug\net5.0\ref\FatihAltuntasBlog.Services.dll
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Services\bin\Debug\net5.0\FatihAltuntasBlog.Services.pdb
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Services\obj\Debug\net5.0\FatihAltuntasBlog.Services.csproj.AssemblyReference.cache
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Services\obj\Debug\net5.0\FatihAltuntasBlog.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Services\obj\Debug\net5.0\FatihAltuntasBlog.Services.AssemblyInfoInputs.cache
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Services\obj\Debug\net5.0\FatihAltuntasBlog.Services.AssemblyInfo.cs
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Services\obj\Debug\net5.0\FatihAltuntasBlog.Services.csproj.CoreCompileInputs.cache
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Services\obj\Debug\net5.0\FatihAltuntasBlog.Services.dll
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Services\obj\Debug\net5.0\ref\FatihAltuntasBlog.Services.dll
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Services\obj\Debug\net5.0\FatihAltuntasBlog.Services.pdb

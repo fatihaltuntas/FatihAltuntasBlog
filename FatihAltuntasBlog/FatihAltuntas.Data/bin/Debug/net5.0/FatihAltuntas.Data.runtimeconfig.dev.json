@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\Kodiks\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Kodiks\\.nuget\\packages"
+    ]
+  }
+}
