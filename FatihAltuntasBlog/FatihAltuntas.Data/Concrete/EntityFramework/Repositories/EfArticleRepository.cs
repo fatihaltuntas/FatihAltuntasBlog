@@ -2,6 +2,8 @@
 using FatihAltuntasBlog.Entities.Concrete;
 using FatihAltuntasBlog.Shared.Data.Abstract;
 using FatihAltuntasBlog.Shared.Data.Concrete;
+using FatihAltuntasBlog.Shared.Utilities.Results.ComplexTypes;
+using FatihAltuntasBlog.Shared.Utilities.Results.Concrete;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,11 @@ namespace FatihAltuntas.Data.Concrete.EntityFramework.Repositories
     {
         public EfArticleRepository(DbContext context) : base(context)
         {
+
+            new Result()
+            {
+                ResultStatus = ResultStatus.Infor,
+            };
         }
     }
 }
