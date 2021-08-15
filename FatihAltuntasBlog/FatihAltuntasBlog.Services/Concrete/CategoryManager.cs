@@ -1,0 +1,115 @@
+﻿using FatihAltuntas.Data.Abstract;
+using FatihAltuntasBlog.Entities.Concrete;
+using FatihAltuntasBlog.Entities.Dtos;
+using FatihAltuntasBlog.Services.Abstract;
+using FatihAltuntasBlog.Shared.Utilities.Results.Abstract;
+using FatihAltuntasBlog.Shared.Utilities.Results.ComplexTypes;
+using FatihAltuntasBlog.Shared.Utilities.Results.Concrete;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FatihAltuntasBlog.Services.Concrete
+{
+    public class CategoryManager : ICategoryService
+    {
+        private readonly IUnitOfWork _unitOfWork;
+
+        public CategoryManager(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
+        public async Task<IResult> Add(CategoryAddDto categoryAddDto, string createdUserName)
+        {
+            await _unitOfWork.Categories.AddAsync(new Category()
+            {
+                CreatedByName = createdUserName,
+                Description = categoryAddDto.Description,
+                IsActive = categoryAddDto.IsActive,
+                ModifiedByName = createdUserName,
+                Name = categoryAddDto.Name,
+                Note = categoryAddDto.Note,
+                IsDeleted = false
+            }).ContinueWith(x => _unitOfWork.SaveAsync());
+
+            return new Result(ResultStatus.Success, $"{categoryAddDto.Name} başarıyla oluşturuldu");
+        }
+
+        public async Task<IResult> Delete(int categoryId, string modifiedByName)
+        {
+            var categoryEntity = await _unitOfWork.Categories.GetAsync(c => c.Id == categoryId);
+
+            if (categoryEntity != null)
+            {
+                categoryEntity.IsDeleted = true;
+                categoryEntity.ModifiedDate = DateTime.Now;
+                await _unitOfWork.Categories.UpdateAsync(categoryEntity).ContinueWith(x => _unitOfWork.SaveAsync());
+                return new Result(ResultStatus.Success, $"{categoryEntity.Name} başarıyla silindi");
+            }
+            return new Result(ResultStatus.Error, "Silme işlemi gerçekleştirilemedi");
+        }
+
+        public async Task<IDataResult<Category>> Get(int categoryId)
+        {
+            var categoryEntity = await _unitOfWork.Categories.GetAsync(c => c.Id == categoryId, c => c.Articles);
+            if (categoryEntity != null)
+            {
+                return new DataResult<Category>(ResultStatus.Success, categoryEntity);
+            }
+            return new DataResult<Category>(ResultStatus.Error, null, "Kategori bulunamadı");
+        }
+
+        public async Task<IDataResult<IList<Category>>> GetAll()
+        {
+            var categoryListEntity = await _unitOfWork.Categories.GetAllAsync(null, c => c.Articles);
+            if (categoryListEntity.Any())
+            {
+                return new DataResult<IList<Category>>(ResultStatus.Success, categoryListEntity);
+            }
+            return new DataResult<IList<Category>>(ResultStatus.Error, null, "Kategori bulunamadı");
+        }
+
+        public async Task<IDataResult<IList<Category>>> GetAllByNonDeleted()
+        {
+            var categoryEntityList = await _unitOfWork.Categories.GetAllAsync(c => !c.IsDeleted, c => c.Articles);
+            if (categoryEntityList.Any())
+            {
+                return new DataResult<IList<Category>>(ResultStatus.Success, categoryEntityList);
+            }
+            return new DataResult<IList<Category>>(ResultStatus.Error, null, "Kategori bulunamadı");
+        }
+
+        public async Task<IResult> HardDelete(int categoryId)
+        {
+            var categoryEntity = await _unitOfWork.Categories.GetAsync(c => c.Id == categoryId);
+            if (categoryEntity != null)
+            {
+                await _unitOfWork.Categories.DeleteAsync(categoryEntity);
+                await _unitOfWork.SaveAsync();
+                return new Result(ResultStatus.Success, "Kategori başarıyla silindi");
+            }
+            return new Result(ResultStatus.Error, "Kategori silinemedi");
+        }
+
+        public async Task<IResult> Update(CategoryUpdateDto categoryUpdateDto, string updatedUserName)
+        {
+            var categoryEntity = await _unitOfWork.Categories.GetAsync(c => c.Id == categoryUpdateDto.Id);
+
+            if (categoryEntity != null)
+            {
+                categoryEntity.IsActive = categoryUpdateDto.IsActive;
+                categoryEntity.IsDeleted = categoryUpdateDto.IsDeleted;
+                categoryEntity.ModifiedByName = updatedUserName;
+                categoryEntity.Name = categoryUpdateDto.Name;
+                categoryEntity.Note = categoryUpdateDto.Note;
+                categoryEntity.Description = categoryUpdateDto.Description;
+                await _unitOfWork.Categories.UpdateAsync(categoryEntity).ContinueWith(x => _unitOfWork.SaveAsync());
+                return new Result(ResultStatus.Success, $"{categoryUpdateDto.Name} adlı kategori başarıyla güncellendi");
+            }
+            return new Result(ResultStatus.Error, "Kategori güncellenemedi");
+        }
+    }
+}

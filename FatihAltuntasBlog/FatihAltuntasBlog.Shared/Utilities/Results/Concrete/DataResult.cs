@@ -27,7 +27,7 @@ namespace FatihAltuntasBlog.Shared.Utilities.Results.Concrete
             ResultStatus = resultStatus;
             Data = data;
             Message = message;
-            Exception = exception;
+            Exception = exception; 
         }
         public T Data { get; }
         public ResultStatus ResultStatus { get; }
