@@ -11,12 +11,12 @@ namespace FatihAltuntasBlog.Services.Abstract
 {
     public interface ICategoryService
     {
-        Task<IDataResult<Category>> Get(int categoryId);
-        Task<IDataResult<IList<Category>>> GetAll();
+        Task<IDataResult<CategoryDto>> Get(int categoryId);
+        Task<IDataResult<CategoryListDto>> GetAll();
         Task<IResult> Add(CategoryAddDto categoryAddDto, string createdUserName);
         Task<IResult> Update(CategoryUpdateDto categoryUpdateDto, string updatedUserName);
         Task<IResult> Delete(int categoryId, string modifiedByName);
         Task<IResult> HardDelete(int categoryId);
-        Task<IDataResult<IList<Category>>> GetAllByNonDeleted();
+        Task<IDataResult<CategoryListDto>> GetAllByNonDeleted();
     }
 }

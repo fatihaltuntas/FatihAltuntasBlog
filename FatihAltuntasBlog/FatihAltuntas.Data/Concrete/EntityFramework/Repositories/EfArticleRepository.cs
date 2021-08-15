@@ -19,10 +19,6 @@ namespace FatihAltuntas.Data.Concrete.EntityFramework.Repositories
         public EfArticleRepository(DbContext context) : base(context)
         {
 
-            new Result()
-            {
-                ResultStatus = ResultStatus.Infor,
-            };
         }
     }
 }
