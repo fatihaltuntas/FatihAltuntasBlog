@@ -10,3 +10,10 @@ C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.
 C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Services\obj\Debug\net5.0\FatihAltuntasBlog.Services.dll
 C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Services\obj\Debug\net5.0\ref\FatihAltuntasBlog.Services.dll
 C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Services\obj\Debug\net5.0\FatihAltuntasBlog.Services.pdb
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Services\bin\Debug\net5.0\FatihAltuntas.Data.dll
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Services\bin\Debug\net5.0\FatihAltuntasBlog.Entities.dll
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Services\bin\Debug\net5.0\FatihAltuntasBlog.Shared.dll
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Services\bin\Debug\net5.0\FatihAltuntas.Data.pdb
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Services\bin\Debug\net5.0\FatihAltuntasBlog.Entities.pdb
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Services\bin\Debug\net5.0\FatihAltuntasBlog.Shared.pdb
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Services\obj\Debug\net5.0\FatihAltuntasBlog.Services.csproj.CopyComplete
