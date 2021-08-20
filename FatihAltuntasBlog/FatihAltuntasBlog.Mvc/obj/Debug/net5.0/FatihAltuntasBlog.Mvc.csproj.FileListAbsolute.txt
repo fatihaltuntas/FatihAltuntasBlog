@@ -394,3 +394,6 @@ C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.
 C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Mvc\obj\Debug\net5.0\FatihAltuntasBlog.Mvc.RazorTargetAssemblyInfo.cs
 C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Mvc\obj\Debug\net5.0\FatihAltuntasBlog.Mvc.Views.pdb
 C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Mvc\obj\Debug\net5.0\FatihAltuntasBlog.Mvc.csproj.CopyComplete
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Mvc\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_LayoutCssPartial.cshtml.g.cs
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Mvc\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_LayoutJsPartial.cshtml.g.cs
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Mvc\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_LayoutSidebarPartial.cshtml.g.cs
