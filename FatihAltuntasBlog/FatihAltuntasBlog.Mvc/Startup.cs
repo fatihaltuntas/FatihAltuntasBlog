@@ -1,3 +1,4 @@
+using FatihAltuntasBlog.Services.AutoMapper.Profiles;
 using FatihAltuntasBlog.Services.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -18,7 +19,7 @@ namespace FatihAltuntasBlog.Mvc
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
-            services.AddAutoMapper(typeof(Startup));
+            services.AddAutoMapper(typeof(CategoryProfile),typeof(ArticleProfile));
             services.LoadMyService();
         }
 

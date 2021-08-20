@@ -7,9 +7,7 @@ using FatihAltuntasBlog.Shared.Utilities.Results.Abstract;
 using FatihAltuntasBlog.Shared.Utilities.Results.ComplexTypes;
 using FatihAltuntasBlog.Shared.Utilities.Results.Concrete;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FatihAltuntasBlog.Services.Concrete
@@ -30,8 +28,8 @@ namespace FatihAltuntasBlog.Services.Concrete
             var categoryEntity = _mapper.Map<Category>(categoryAddDto);
             categoryEntity.CreatedByName = createdUserName;
             categoryEntity.ModifiedByName = createdUserName;
-            await _unitOfWork.Categories.AddAsync(categoryEntity).ContinueWith(x => _unitOfWork.SaveAsync());
-
+            await _unitOfWork.Categories.AddAsync(categoryEntity);
+            await _unitOfWork.SaveAsync();
             return new Result(ResultStatus.Success, $"{categoryAddDto.Name} başarıyla oluşturuldu");
         }
 
@@ -43,7 +41,8 @@ namespace FatihAltuntasBlog.Services.Concrete
             {
                 categoryEntity.IsDeleted = true;
                 categoryEntity.ModifiedDate = DateTime.Now;
-                await _unitOfWork.Categories.UpdateAsync(categoryEntity).ContinueWith(x => _unitOfWork.SaveAsync());
+                await _unitOfWork.Categories.UpdateAsync(categoryEntity);
+                await _unitOfWork.SaveAsync();
                 return new Result(ResultStatus.Success, $"{categoryEntity.Name} başarıyla silindi");
             }
             return new Result(ResultStatus.Error, "Silme işlemi gerçekleştirilemedi");
@@ -74,7 +73,7 @@ namespace FatihAltuntasBlog.Services.Concrete
                     ResultStatus = ResultStatus.Success
                 });
             }
-            return new DataResult<CategoryListDto>(ResultStatus.Error, null, "Kategori bulunamadı");
+            return new DataResult<CategoryListDto>(ResultStatus.Error, new CategoryListDto() { Categories= null, ResultStatus = ResultStatus.Error,Message = "Kategori bulunamadı" }, "Kategori bulunamadı");
         }
 
         public async Task<IDataResult<CategoryListDto>> GetAllByNonDeleted()
@@ -110,7 +109,8 @@ namespace FatihAltuntasBlog.Services.Concrete
 
             if (categoryEntity != null)
             {
-                await _unitOfWork.Categories.UpdateAsync(categoryEntity).ContinueWith(x => _unitOfWork.SaveAsync());
+                await _unitOfWork.Categories.UpdateAsync(categoryEntity);
+                await _unitOfWork.SaveAsync();
                 return new Result(ResultStatus.Success, $"{categoryUpdateDto.Name} adlı kategori başarıyla güncellendi");
             }
             return new Result(ResultStatus.Error, "Kategori güncellenemedi");
