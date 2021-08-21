@@ -5,6 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FatihAltuntasBlog.Shared.Utilities.Results.ComplexTypes;
+using FatihAltuntasBlog.Mvc.Areas.Admin.Models;
+using FatihAltuntasBlog.Shared.Utilities.Extensions;
+using FatihAltuntasBlog.Entities.Dtos;
+using System.Text.Json;
 
 namespace FatihAltuntasBlog.Mvc.Areas.Admin.Controllers
 {
@@ -23,10 +27,31 @@ namespace FatihAltuntasBlog.Mvc.Areas.Admin.Controllers
             var result = await _categoryService.GetAll();
             return View(result.Data);
         }
-
+        [HttpGet]
         public IActionResult Add()
         {
             return PartialView("_CategoryAddPartial");
+        }
+        [HttpPost]
+        public async Task<IActionResult> Add(CategoryAddDto categoryAddDto)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _categoryService.Add(categoryAddDto, "Fatih Altuntas");
+                if(result.ResultStatus == ResultStatus.Success)
+                {
+                    var categoryAddAjaxModel = JsonSerializer.Serialize(new CategoryAddAjaxViewModel { 
+                    CategoryDto = result.Data,
+                    CategoryAddPartial = await this.RenderViewToStringAsync("_CategoryAddPartial",categoryAddDto)
+                    });
+                    return Json(categoryAddAjaxModel);
+                }
+            }
+            var categoryAddAjaxErrorModel = JsonSerializer.Serialize(new CategoryAddAjaxViewModel
+            {
+                CategoryAddPartial = await this.RenderViewToStringAsync("_CategoryAddPartial", categoryAddDto)
+            });
+            return Json(categoryAddAjaxErrorModel);
         }
     }
 }
