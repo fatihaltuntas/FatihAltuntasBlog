@@ -15,6 +15,7 @@ namespace FatihAltuntasBlog.Services.AutoMapper.Profiles
         {
             CreateMap<CategoryAddDto, Category>().ForMember(dest => dest.CreatedDate, x => x.MapFrom(o => DateTime.Now));
             CreateMap<CategoryUpdateDto, Category>().ForMember(dest => dest.CreatedDate, x => x.MapFrom(o => DateTime.Now));
+            CreateMap<Category, CategoryUpdateDto>();
         }
     }
 }

@@ -112,6 +112,18 @@ namespace FatihAltuntasBlog.Services.Concrete
             return new DataResult<CategoryListDto>(ResultStatus.Error, new CategoryListDto() { Categories = null, ResultStatus = ResultStatus.Error, Message = "Kategori bulunamadı" }, "Kategori bulunamadı");
         }
 
+        public async Task<IDataResult<CategoryUpdateDto>> GetCategoryUpdateDto(int categoryId)
+        {
+            var isHave =await _unitOfWork.Categories.AnyAsync(c => c.Id == categoryId);
+            if (isHave)
+            {
+                var categoryEntity = await _unitOfWork.Categories.GetAsync(c => c.Id == categoryId);
+                var categoryUpdateDto = _mapper.Map<CategoryUpdateDto>(categoryEntity);
+                return new DataResult<CategoryUpdateDto>(ResultStatus.Success, categoryUpdateDto);
+            }
+            return new DataResult<CategoryUpdateDto>(ResultStatus.Error, null, "Böyle bir kategori bulunamadı");
+        }
+
         public async Task<IResult> HardDelete(int categoryId)
         {
             var categoryEntity = await _unitOfWork.Categories.GetAsync(c => c.Id == categoryId);
@@ -126,7 +138,8 @@ namespace FatihAltuntasBlog.Services.Concrete
 
         public async Task<IDataResult<CategoryDto>> Update(CategoryUpdateDto categoryUpdateDto, string updatedUserName)
         {
-            var categoryEntity = _mapper.Map<Category>(categoryUpdateDto);
+            var oldCategoryEntity = await _unitOfWork.Categories.GetAsync(c => c.Id == categoryUpdateDto.Id);
+            var categoryEntity = _mapper.Map<CategoryUpdateDto,Category>(categoryUpdateDto,oldCategoryEntity);
             categoryEntity.ModifiedByName = updatedUserName;
 
             if (categoryEntity != null)
