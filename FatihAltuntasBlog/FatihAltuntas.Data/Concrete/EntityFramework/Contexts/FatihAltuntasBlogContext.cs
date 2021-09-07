@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace FatihAltuntas.Data.Concrete.EntityFramework.Contexts
 {
-    public class FatihAltuntasBlogContext : IdentityDbContext<User,Role,int>
+    public class FatihAltuntasBlogContext : IdentityDbContext<User,Role,int,UserClaim,UserRole,UserLogin,RoleClaim,UserToken>
     {
         public DbSet<Article> Articles { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -28,6 +28,11 @@ namespace FatihAltuntas.Data.Concrete.EntityFramework.Contexts
             modelBuilder.ApplyConfiguration(new CommentMap());
             modelBuilder.ApplyConfiguration(new RoleMap());
             modelBuilder.ApplyConfiguration(new UserMap());
+            modelBuilder.ApplyConfiguration(new UserClaimMap());
+            modelBuilder.ApplyConfiguration(new UserLoginMap());
+            modelBuilder.ApplyConfiguration(new UserRoleMap());
+            modelBuilder.ApplyConfiguration(new UserTokenMap());
+            modelBuilder.ApplyConfiguration(new RoleClaimMap());
         }
     }
 }
