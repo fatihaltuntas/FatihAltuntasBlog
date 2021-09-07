@@ -2,7 +2,6 @@ C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.
 C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Shared\bin\Debug\net5.0\FatihAltuntasBlog.Shared.dll
 C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Shared\bin\Debug\net5.0\ref\FatihAltuntasBlog.Shared.dll
 C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Shared\bin\Debug\net5.0\FatihAltuntasBlog.Shared.pdb
-C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Shared\obj\Debug\net5.0\FatihAltuntasBlog.Shared.csproj.AssemblyReference.cache
 C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Shared\obj\Debug\net5.0\FatihAltuntasBlog.Shared.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Shared\obj\Debug\net5.0\FatihAltuntasBlog.Shared.AssemblyInfoInputs.cache
 C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Shared\obj\Debug\net5.0\FatihAltuntasBlog.Shared.AssemblyInfo.cs
@@ -10,3 +9,4 @@ C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.
 C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Shared\obj\Debug\net5.0\FatihAltuntasBlog.Shared.dll
 C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Shared\obj\Debug\net5.0\ref\FatihAltuntasBlog.Shared.dll
 C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Shared\obj\Debug\net5.0\FatihAltuntasBlog.Shared.pdb
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Shared\obj\Debug\net5.0\FatihAltuntasBlog.Shared.csproj.AssemblyReference.cache
