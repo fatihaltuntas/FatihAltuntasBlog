@@ -27,6 +27,21 @@ namespace FatihAltuntasBlog.Mvc
             services.AddSession();
             services.AddAutoMapper(typeof(CategoryProfile), typeof(ArticleProfile));
             services.LoadMyService();
+            services.ConfigureApplicationCookie(opt =>
+            {
+                opt.LoginPath = new PathString("/Admin/User/Login");
+                opt.LogoutPath = new PathString("/Admin/User/Logout");
+                opt.Cookie = new CookieBuilder
+                {
+                    Name = "FatihAltuntasBlog",
+                    HttpOnly = true,
+                    SameSite = SameSiteMode.Strict,
+                    SecurePolicy = CookieSecurePolicy.SameAsRequest //Always
+                };
+                opt.SlidingExpiration = true;
+                opt.ExpireTimeSpan = System.TimeSpan.FromDays(7);
+                opt.AccessDeniedPath = new PathString("/Admin/User/AccessDenied");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -389,6 +389,7 @@ C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.
 C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Mvc\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_LayoutCssPartial.cshtml.g.cs
 C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Mvc\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_LayoutJsPartial.cshtml.g.cs
 C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Mvc\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_LayoutSidebarPartial.cshtml.g.cs
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Mvc\obj\Debug\net5.0\Razor\Areas\Admin\Views\User\Index.cshtml.g.cs
 C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Mvc\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewImports.cshtml.g.cs
 C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Mvc\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewStart.cshtml.g.cs
 C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Mvc\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
