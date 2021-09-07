@@ -1,5 +1,6 @@
 ﻿using FatihAltuntas.Data.Concrete.EntityFramework.Mappings;
 using FatihAltuntasBlog.Entities.Concrete;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,13 +10,11 @@ using System.Threading.Tasks;
 
 namespace FatihAltuntas.Data.Concrete.EntityFramework.Contexts
 {
-    public class FatihAltuntasBlogContext : DbContext
+    public class FatihAltuntasBlogContext : IdentityDbContext<User,Role,int>
     {
         public DbSet<Article> Articles { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Comment> Comments { get; set; }
-        public DbSet<Role> Roles { get; set; }
-        public DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

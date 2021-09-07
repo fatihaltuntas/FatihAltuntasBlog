@@ -11,8 +11,6 @@ namespace FatihAltuntas.Data.Abstract
         IArticleRepository Articles { get; } //unitOfWork.Articles
         ICategoryRepository Categories { get; }
         ICommentRepository Comments { get; }
-        IRoleRepository Roles { get; }
-        IUserRepository User { get; }
         //_UbitOfWork.Categories.AddAsync(category);
         //_unitOfWork.Users.AddAsync(user)
         //_unitOfWork.SaveAsync()
