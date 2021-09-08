@@ -37,6 +37,7 @@ namespace FatihAltuntasBlog.Entities.Dtos
         [DisplayName("Fotoğraf")]
         [Required(ErrorMessage = "{0} boş geçilmemelidir.")]
         [DataType(DataType.Upload)]
-        public IFormFile Picture { get; set; }
+        public IFormFile PictureFile { get; set; }
+        public string Picture { get; set; }
     }
 }

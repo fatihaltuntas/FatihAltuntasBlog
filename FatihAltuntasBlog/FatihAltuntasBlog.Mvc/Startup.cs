@@ -1,3 +1,4 @@
+using FatihAltuntasBlog.Mvc.AutoMapper.Profiles;
 using FatihAltuntasBlog.Services.AutoMapper.Profiles;
 using FatihAltuntasBlog.Services.Extensions;
 using Microsoft.AspNetCore.Builder;
@@ -25,7 +26,7 @@ namespace FatihAltuntasBlog.Mvc
                 opt.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
             });
             services.AddSession();
-            services.AddAutoMapper(typeof(CategoryProfile), typeof(ArticleProfile));
+            services.AddAutoMapper(typeof(CategoryProfile), typeof(ArticleProfile),typeof(UserProfile));
             services.LoadMyService();
             services.ConfigureApplicationCookie(opt =>
             {
