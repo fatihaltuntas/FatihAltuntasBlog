@@ -112,5 +112,41 @@ namespace FatihAltuntasBlog.Mvc.Areas.Admin.Controllers
             return fileName;
         }
 
+        public async Task<JsonResult> Delete(int userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId.ToString());
+            var result = await _userManager.DeleteAsync(user);
+            if (result.Succeeded)
+            {
+                var deletedUser = JsonSerializer.Serialize(new UserDto()
+                {
+                    ResultStatus = ResultStatus.Success,
+                    Message = $"{user.UserName} adlı kullanıcı adına sahip kullanıcı başarıyla silinmiştir.",
+                    User = user
+                });
+                return Json(deletedUser);
+            }
+            string errorMessages = "";
+            foreach (var error in result.Errors)
+            {
+                errorMessages += $"*{error.Description}\n";
+            }
+
+            var deletedUserErrorModel = JsonSerializer.Serialize(new UserDto
+            {
+                ResultStatus = ResultStatus.Error,
+                Message = $"{user.UserName} adlı kullanıcı adına sahip kullanıcı silirinken bazı hatalar oluştu.\n{errorMessages}",
+                User = user
+            });
+            return Json(deletedUserErrorModel);
+        }
+
+        public async Task<PartialViewResult> Update(int userId)
+        {
+            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            var userUpdateDto = _mapper.Map<UserUpdateDto>(user);
+            return PartialView("_UserUpdatePartial", userUpdateDto);
+        }
+
     }
 }
