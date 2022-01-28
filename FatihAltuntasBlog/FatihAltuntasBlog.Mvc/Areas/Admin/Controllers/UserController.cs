@@ -273,10 +273,99 @@ namespace FatihAltuntasBlog.Mvc.Areas.Admin.Controllers
         {
             return View();
         }
+        [Authorize]
         public async Task<IActionResult> Logout()
         {
-            _signInManager.SignOutAsync();
+            await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home", new { Area = "" });
+        }
+        [Authorize]
+        [HttpGet]
+        public async Task<ViewResult> ChangeDetails()
+        {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var updateDto = _mapper.Map<UserUpdateDto>(user);
+            return View(updateDto);
+        }
+        [Authorize]
+        [HttpPost]
+        public async Task<ViewResult> ChangeDetails(UserUpdateDto dto)
+        {
+            if (ModelState.IsValid)
+            {
+                bool isUploadedNewPicture = false;
+                var oldUser = await _userManager.GetUserAsync(HttpContext.User);
+                var oldUserImage = oldUser.Picture;
+
+                if (dto.PictureFile != null)
+                {
+                    dto.Picture = await ImageUpload(dto.UserName, dto.PictureFile);
+                    if (oldUserImage != "defaultUser.png")
+                        isUploadedNewPicture = true;
+                }
+
+                var updatedUser = _mapper.Map<UserUpdateDto, User>(dto, oldUser);
+                var result = await _userManager.UpdateAsync(updatedUser);
+
+                if (result.Succeeded)
+                {
+                    if (isUploadedNewPicture)
+                        this.ImageDelete(oldUserImage);
+                    TempData.Add("SuccessMesage", $"{dto.UserName} adlı kullanıcı başarıyla güncellendi");
+                    return View(dto);
+                }
+                else
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
+                    return View(dto);
+                }
+            }
+            else
+            {
+                return View(dto);
+            }
+        }
+        [HttpGet]
+        [Authorize]
+        public ViewResult PasswordChange()
+        {
+            return View();
+        }
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> PasswordChange(UserChangePasswordDto dto)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.GetUserAsync(HttpContext.User);
+                var isVerified = await _userManager.CheckPasswordAsync(user, dto.CurrentPassword);
+
+                if (isVerified)
+                {
+                    var result = await _userManager.ChangePasswordAsync(user, dto.CurrentPassword, dto.NewPassword);
+                    if (result.Succeeded)
+                    {
+                        await _userManager.UpdateSecurityStampAsync(user);
+                        await _signInManager.SignOutAsync();
+                        await _signInManager.PasswordSignInAsync(user, dto.NewPassword, true, false);
+                        TempData.Add("SuccessMesage", "Şifreniz başarıyla değiştirilmiştir.");
+                        return View();
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Lütfen, girmiş olduğunuz mevcut şifrenizi kontrol ediniz.");
+                        return View(dto);
+                    }
+                }
+                else
+                {
+                    return View(dto);
+                }
+            }
+            return View();
         }
     }
 }
