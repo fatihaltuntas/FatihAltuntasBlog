@@ -273,5 +273,10 @@ namespace FatihAltuntasBlog.Mvc.Areas.Admin.Controllers
         {
             return View();
         }
+        public async Task<IActionResult> Logout()
+        {
+            _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home", new { Area = "" });
+        }
     }
 }
