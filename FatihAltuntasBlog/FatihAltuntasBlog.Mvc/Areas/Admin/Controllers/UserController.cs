@@ -33,7 +33,7 @@ namespace FatihAltuntasBlog.Mvc.Areas.Admin.Controllers
             _mapper = mapper;
             _signInManager = signInManager;
         }
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             var users = await _userManager.Users.ToListAsync();
@@ -55,8 +55,8 @@ namespace FatihAltuntasBlog.Mvc.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var user = await _userManager.FindByEmailAsync(userLoginDto.Email);
-                
-                if(user != null)
+
+                if (user != null)
                 {
                     var result = await _signInManager.PasswordSignInAsync(user, userLoginDto.Password, userLoginDto.RememberMe, false);
 
@@ -81,32 +81,35 @@ namespace FatihAltuntasBlog.Mvc.Areas.Admin.Controllers
                 return View("UserLogin");
             }
         }
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<JsonResult> GetAllUsers()
         {
             var users = await _userManager.Users.ToListAsync();
-            var userListDto = JsonSerializer.Serialize(new UserListDto() { 
+            var userListDto = JsonSerializer.Serialize(new UserListDto()
+            {
                 Users = users,
                 ResultStatus = ResultStatus.Success
-            },new JsonSerializerOptions {
+            }, new JsonSerializerOptions
+            {
                 ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve
             });
             return Json(userListDto);
         }
         [Authorize]
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Add()
         {
             return PartialView("_UserAddPartial");
         }
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Add(UserAddDto userAddDto)
         {
             if (ModelState.IsValid)
             {
-                userAddDto.Picture = await ImageUpload(userAddDto.UserName,userAddDto.PictureFile);
+                userAddDto.Picture = await ImageUpload(userAddDto.UserName, userAddDto.PictureFile);
                 var user = _mapper.Map<User>(userAddDto);
                 var result = await _userManager.CreateAsync(user, userAddDto.Password);
                 if (result.Succeeded)
@@ -127,7 +130,8 @@ namespace FatihAltuntasBlog.Mvc.Areas.Admin.Controllers
                 {
                     ModelState.AddModelError("", error.Description);
                 }
-                var userAddAjaxErrorModel = JsonSerializer.Serialize(new UserAddAjaxViewModel { 
+                var userAddAjaxErrorModel = JsonSerializer.Serialize(new UserAddAjaxViewModel
+                {
                     UserAddDto = userAddDto,
                     UserAddPartial = await this.RenderViewToStringAsync("_UserAddPartial", userAddDto)
                 });
@@ -140,7 +144,7 @@ namespace FatihAltuntasBlog.Mvc.Areas.Admin.Controllers
             });
             return Json(userAddAjaxModelStateErrorModel);
         }
-        [Authorize]
+        [Authorize(Roles = "Admin,Editor")]
         public async Task<string> ImageUpload(string userName, IFormFile pictureFile)
         {
             string wwwroot = _env.WebRootPath;
@@ -155,6 +159,7 @@ namespace FatihAltuntasBlog.Mvc.Areas.Admin.Controllers
             return fileName;
         }
         [Authorize]
+        [Authorize(Roles = "Admin,Editor")]
         public bool ImageDelete(string fileName)
         {
             string wwwroot = _env.WebRootPath;
@@ -167,7 +172,7 @@ namespace FatihAltuntasBlog.Mvc.Areas.Admin.Controllers
             else
                 return false;
         }
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Update(UserUpdateDto dto)
         {
@@ -177,7 +182,7 @@ namespace FatihAltuntasBlog.Mvc.Areas.Admin.Controllers
                 var oldUser = await _userManager.FindByIdAsync(dto.Id.ToString());
                 var oldUserImage = oldUser.Picture;
 
-                if(dto.PictureFile != null)
+                if (dto.PictureFile != null)
                 {
                     dto.Picture = await ImageUpload(dto.UserName, dto.PictureFile);
                     isUploadedNewPicture = true;
@@ -227,7 +232,7 @@ namespace FatihAltuntasBlog.Mvc.Areas.Admin.Controllers
                 return Json(userUpdateModelStateErrorViewModel);
             }
         }
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<JsonResult> Delete(int userId)
         {
             var user = await _userManager.FindByIdAsync(userId.ToString());
@@ -256,13 +261,17 @@ namespace FatihAltuntasBlog.Mvc.Areas.Admin.Controllers
             });
             return Json(deletedUserErrorModel);
         }
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<PartialViewResult> Update(int userId)
         {
             var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
             var userUpdateDto = _mapper.Map<UserUpdateDto>(user);
             return PartialView("_UserUpdatePartial", userUpdateDto);
         }
-
+        [HttpGet]
+        public ViewResult AccessDenied()
+        {
+            return View();
+        }
     }
 }

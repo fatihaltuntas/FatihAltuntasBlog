@@ -10,10 +10,13 @@ using FatihAltuntasBlog.Shared.Utilities.Extensions;
 using FatihAltuntasBlog.Entities.Dtos;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FatihAltuntasBlog.Mvc.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin,Editor")]
+
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;

@@ -9,3 +9,4 @@ C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.
 C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Shared\obj\Debug\net5.0\FatihAltuntasBlog.Shared.dll
 C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Shared\obj\Debug\net5.0\ref\FatihAltuntasBlog.Shared.dll
 C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Shared\obj\Debug\net5.0\FatihAltuntasBlog.Shared.pdb
+C:\Users\Kodiks\Documents\FatihAltuntasBlog\FatihAltuntasBlog\FatihAltuntasBlog.Shared\obj\Debug\net5.0\FatihAltuntasBlog.Shared.csproj.AssemblyReference.cache
