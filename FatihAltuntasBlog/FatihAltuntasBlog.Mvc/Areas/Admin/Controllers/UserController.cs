@@ -2,6 +2,7 @@
 using FatihAltuntasBlog.Entities.Concrete;
 using FatihAltuntasBlog.Entities.Dtos;
 using FatihAltuntasBlog.Mvc.Areas.Admin.Models;
+using FatihAltuntasBlog.Mvc.Helpers.Abstract;
 using FatihAltuntasBlog.Shared.Utilities.Extensions;
 using FatihAltuntasBlog.Shared.Utilities.Results.ComplexTypes;
 using Microsoft.AspNetCore.Authorization;
@@ -22,22 +23,21 @@ namespace FatihAltuntasBlog.Mvc.Areas.Admin.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        private readonly IWebHostEnvironment _env;
         private readonly IMapper _mapper;
+        private readonly IImageHelper _imageHelper;
 
 
-        public UserController(UserManager<User> userManager, IWebHostEnvironment env, IMapper mapper, SignInManager<User> signInManager)
+        public UserController(UserManager<User> userManager, IWebHostEnvironment env, IMapper mapper, SignInManager<User> signInManager, IImageHelper imageHelper)
         {
             _userManager = userManager;
-            _env = env;
             _mapper = mapper;
             _signInManager = signInManager;
+            _imageHelper = imageHelper;
         }
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             var users = await _userManager.Users.ToListAsync();
-            ImageDelete("fatihaltuntas1-388-16-28-22-17-9-2021.png");
             return View(new UserListDto()
             {
                 Users = users,
@@ -109,7 +109,8 @@ namespace FatihAltuntasBlog.Mvc.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                userAddDto.Picture = await ImageUpload(userAddDto.UserName, userAddDto.PictureFile);
+                var uploadedImageResultDto = await _imageHelper.UploadUserImage(userAddDto.UserName, userAddDto.PictureFile);
+                userAddDto.Picture = uploadedImageResultDto.ResultStatus == ResultStatus.Success ? uploadedImageResultDto.Data.FullName : "userImages/defaultUser.png";
                 var user = _mapper.Map<User>(userAddDto);
                 var result = await _userManager.CreateAsync(user, userAddDto.Password);
                 if (result.Succeeded)
@@ -144,34 +145,6 @@ namespace FatihAltuntasBlog.Mvc.Areas.Admin.Controllers
             });
             return Json(userAddAjaxModelStateErrorModel);
         }
-        [Authorize(Roles = "Admin,Editor")]
-        public async Task<string> ImageUpload(string userName, IFormFile pictureFile)
-        {
-            string wwwroot = _env.WebRootPath;
-            string fileExtension = Path.GetExtension(pictureFile.FileName);
-            DateTime datetime = DateTime.Now;
-            string fileName = $"{userName}-{datetime.FullDateTimeStringWithUnderscore()}{fileExtension}";
-            var path = Path.Combine($"{wwwroot}/img", fileName);
-            await using (var stream = new FileStream(path, FileMode.Create))
-            {
-                await pictureFile.CopyToAsync(stream);
-            }
-            return fileName;
-        }
-        [Authorize]
-        [Authorize(Roles = "Admin,Editor")]
-        public bool ImageDelete(string fileName)
-        {
-            string wwwroot = _env.WebRootPath;
-            var fileToDeleteUrl = Path.Combine($"{wwwroot}/img", fileName);
-            if (System.IO.File.Exists(fileToDeleteUrl))
-            {
-                System.IO.File.Delete(fileToDeleteUrl);
-                return true;
-            }
-            else
-                return false;
-        }
         [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Update(UserUpdateDto dto)
@@ -184,8 +157,10 @@ namespace FatihAltuntasBlog.Mvc.Areas.Admin.Controllers
 
                 if (dto.PictureFile != null)
                 {
-                    dto.Picture = await ImageUpload(dto.UserName, dto.PictureFile);
-                    isUploadedNewPicture = true;
+                    var uploadedImageResultDto = await _imageHelper.UploadUserImage(dto.UserName, dto.PictureFile);
+                    dto.Picture = uploadedImageResultDto.ResultStatus == ResultStatus.Success ? uploadedImageResultDto.Data.FullName : "userImages/defaultUser.png";
+                    if (oldUserImage != "userImages/defaultUser.png")
+                        isUploadedNewPicture = true;
                 }
 
                 var updatedUser = _mapper.Map<UserUpdateDto, User>(dto, oldUser);
@@ -194,7 +169,7 @@ namespace FatihAltuntasBlog.Mvc.Areas.Admin.Controllers
                 if (result.Succeeded)
                 {
                     if (isUploadedNewPicture)
-                        this.ImageDelete(oldUserImage);
+                        _imageHelper.Delete(oldUserImage);
 
                     var userUpdateAjaxModel = JsonSerializer.Serialize(new UserUpdateAjaxViewModel
                     {
@@ -299,8 +274,9 @@ namespace FatihAltuntasBlog.Mvc.Areas.Admin.Controllers
 
                 if (dto.PictureFile != null)
                 {
-                    dto.Picture = await ImageUpload(dto.UserName, dto.PictureFile);
-                    if (oldUserImage != "defaultUser.png")
+                    var uploadedImageResultDto = await _imageHelper.UploadUserImage(dto.UserName, dto.PictureFile);
+                    dto.Picture = uploadedImageResultDto.ResultStatus == ResultStatus.Success ? uploadedImageResultDto.Data.FullName : "userImages/defaultUser.png";
+                    if (oldUserImage != "userImages/defaultUser.png")
                         isUploadedNewPicture = true;
                 }
 
@@ -310,7 +286,7 @@ namespace FatihAltuntasBlog.Mvc.Areas.Admin.Controllers
                 if (result.Succeeded)
                 {
                     if (isUploadedNewPicture)
-                        this.ImageDelete(oldUserImage);
+                        _imageHelper.Delete(oldUserImage);
                     TempData.Add("SuccessMesage", $"{dto.UserName} adlı kullanıcı başarıyla güncellendi");
                     return View(dto);
                 }

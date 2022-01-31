@@ -1,4 +1,6 @@
 using FatihAltuntasBlog.Mvc.AutoMapper.Profiles;
+using FatihAltuntasBlog.Mvc.Helpers.Abstract;
+using FatihAltuntasBlog.Mvc.Helpers.Concrete;
 using FatihAltuntasBlog.Services.AutoMapper.Profiles;
 using FatihAltuntasBlog.Services.Extensions;
 using Microsoft.AspNetCore.Builder;
@@ -28,6 +30,7 @@ namespace FatihAltuntasBlog.Mvc
             services.AddSession();
             services.AddAutoMapper(typeof(CategoryProfile), typeof(ArticleProfile),typeof(UserProfile));
             services.LoadMyService();
+            services.AddScoped<IImageHelper, ImageHelper>();
             services.ConfigureApplicationCookie(opt =>
             {
                 opt.LoginPath = new PathString("/Admin/User/Login");
