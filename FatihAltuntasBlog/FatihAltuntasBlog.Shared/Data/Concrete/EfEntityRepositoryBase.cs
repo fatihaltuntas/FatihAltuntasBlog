@@ -12,7 +12,7 @@ namespace FatihAltuntasBlog.Shared.Data.Concrete
 {
     public class EfEntityRepositoryBase<TEntity> : IEntityRepository<TEntity> where TEntity : class,IEntity,new()
     {
-        private readonly DbContext _context;
+        protected readonly DbContext _context;
 
         public EfEntityRepositoryBase(DbContext context)
         {
