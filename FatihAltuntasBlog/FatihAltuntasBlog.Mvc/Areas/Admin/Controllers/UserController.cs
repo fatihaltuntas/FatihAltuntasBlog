@@ -356,16 +356,23 @@ namespace FatihAltuntasBlog.Mvc.Areas.Admin.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("", "Lütfen, girmiş olduğunuz mevcut şifrenizi kontrol ediniz.");
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError("", error.Description);
+                        }
                         return View(dto);
                     }
                 }
                 else
                 {
                     return View(dto);
-                }
+                }   
             }
-            return View();
+            else
+            {
+                return View(dto);
+            }
+                
         }
     }
 }
