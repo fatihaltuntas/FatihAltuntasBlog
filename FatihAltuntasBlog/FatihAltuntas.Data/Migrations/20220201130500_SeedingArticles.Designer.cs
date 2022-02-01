@@ -4,14 +4,16 @@ using FatihAltuntas.Data.Concrete.EntityFramework.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FatihAltuntas.Data.Migrations
 {
     [DbContext(typeof(FatihAltuntasBlogContext))]
-    partial class FatihAltuntasBlogContextModelSnapshot : ModelSnapshot
+    [Migration("20220201130500_SeedingArticles")]
+    partial class SeedingArticles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

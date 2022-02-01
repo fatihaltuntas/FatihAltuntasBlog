@@ -4,14 +4,16 @@ using FatihAltuntas.Data.Concrete.EntityFramework.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FatihAltuntas.Data.Migrations
 {
     [DbContext(typeof(FatihAltuntasBlogContext))]
-    partial class FatihAltuntasBlogContextModelSnapshot : ModelSnapshot
+    [Migration("20220201130309_SeedingCategories")]
+    partial class SeedingCategories
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -156,12 +158,12 @@ namespace FatihAltuntas.Data.Migrations
                         {
                             Id = 1,
                             CreatedByName = "InitialCreate",
-                            CreatedDate = new DateTime(2022, 2, 1, 16, 4, 59, 416, DateTimeKind.Local).AddTicks(6284),
+                            CreatedDate = new DateTime(2022, 2, 1, 16, 3, 9, 194, DateTimeKind.Local).AddTicks(7170),
                             Description = "C# Programlama Dili ile İlgili En Güncel Bilgiler",
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByName = "InitialCreate",
-                            ModifiedDate = new DateTime(2022, 2, 1, 16, 4, 59, 416, DateTimeKind.Local).AddTicks(6821),
+                            ModifiedDate = new DateTime(2022, 2, 1, 16, 3, 9, 194, DateTimeKind.Local).AddTicks(7719),
                             Name = "C#",
                             Note = "C# Blog Kategorisi"
                         },
@@ -169,12 +171,12 @@ namespace FatihAltuntas.Data.Migrations
                         {
                             Id = 2,
                             CreatedByName = "InitialCreate",
-                            CreatedDate = new DateTime(2022, 2, 1, 16, 4, 59, 416, DateTimeKind.Local).AddTicks(7333),
+                            CreatedDate = new DateTime(2022, 2, 1, 16, 3, 9, 194, DateTimeKind.Local).AddTicks(8638),
                             Description = "C++ Programlama Dili ile İlgili En Güncel Bilgiler",
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByName = "InitialCreate",
-                            ModifiedDate = new DateTime(2022, 2, 1, 16, 4, 59, 416, DateTimeKind.Local).AddTicks(7334),
+                            ModifiedDate = new DateTime(2022, 2, 1, 16, 3, 9, 194, DateTimeKind.Local).AddTicks(8639),
                             Name = "C++",
                             Note = "C++ Blog Kategorisi"
                         },
@@ -182,12 +184,12 @@ namespace FatihAltuntas.Data.Migrations
                         {
                             Id = 3,
                             CreatedByName = "InitialCreate",
-                            CreatedDate = new DateTime(2022, 2, 1, 16, 4, 59, 416, DateTimeKind.Local).AddTicks(7339),
+                            CreatedDate = new DateTime(2022, 2, 1, 16, 3, 9, 194, DateTimeKind.Local).AddTicks(8644),
                             Description = "JavaScript Programlama Dili ile İlgili En Güncel Bilgiler",
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByName = "InitialCreate",
-                            ModifiedDate = new DateTime(2022, 2, 1, 16, 4, 59, 416, DateTimeKind.Local).AddTicks(7340),
+                            ModifiedDate = new DateTime(2022, 2, 1, 16, 3, 9, 194, DateTimeKind.Local).AddTicks(8646),
                             Name = "JavaScript",
                             Note = "JavaScript Blog Kategorisi"
                         });
@@ -273,14 +275,14 @@ namespace FatihAltuntas.Data.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "79b26bb7-19e9-4ba4-bdd6-865bc42d5d5c",
+                            ConcurrencyStamp = "0329f850-0577-404c-bd92-e49f9865d3ee",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "77876091-3754-4089-9119-904ba81f556e",
+                            ConcurrencyStamp = "dbfea332-6893-4c4b-a987-afac6af61076",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         });
@@ -385,17 +387,17 @@ namespace FatihAltuntas.Data.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d741df58-21cb-46c7-ae36-daecbb78cb6c",
+                            ConcurrencyStamp = "fa9860a4-f23a-4380-81d1-a0f55e226994",
                             Email = "adminuser@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMINUSER@ADMIN.COM",
                             NormalizedUserName = "ADMINUSER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOi6257lZy95zr/TGdhoZ4aqRZy0S8Psgmuf5jIVk5/Yp6JGcHQxLmuSM5UUZ0dnOQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEG0me1HRslovTQwnirSFD6F0DDcdiQnXZhawZglmsZTAuqf3s+SzpvZMv4hhOaVyAQ==",
                             PhoneNumber = "*905555555555",
                             PhoneNumberConfirmed = true,
                             Picture = "defaultUser.png",
-                            SecurityStamp = "2694ea38-75ae-443a-85f0-b944a8191db0",
+                            SecurityStamp = "9bbf0ac8-ac80-4e94-9b49-f8bdbd1189a5",
                             TwoFactorEnabled = false,
                             UserName = "adminuser"
                         },
@@ -403,17 +405,17 @@ namespace FatihAltuntas.Data.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a550c3b4-f4a0-48b7-98b6-158ca924f96f",
+                            ConcurrencyStamp = "f38be4bb-f630-4abd-9e64-4f3e99589716",
                             Email = "editoruser@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "EDITORUSER@ADMIN.COM",
                             NormalizedUserName = "EDITORUSER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEANsguwsEvnIiT90X/KDbxToE0Q9dHfTpoqDfVdpxDCLctgL5qcsU6uZKq275xeTJA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFcsoXAjOO1/nesLkUchgaDDEv9YNVl/YYcYMTy0nl7IeQRCEXstQxgCAAgdS2USew==",
                             PhoneNumber = "*905555555555",
                             PhoneNumberConfirmed = true,
                             Picture = "defaultUser.png",
-                            SecurityStamp = "686c56a0-bdd0-4957-8596-06495bb5f2b9",
+                            SecurityStamp = "e37a3ce5-1f0c-44eb-b82b-8267f30e5642",
                             TwoFactorEnabled = false,
                             UserName = "editoruser"
                         });
