@@ -3,6 +3,7 @@ using FatihAltuntas.Data.Abstract;
 using FatihAltuntasBlog.Entities.Concrete;
 using FatihAltuntasBlog.Entities.Dtos;
 using FatihAltuntasBlog.Services.Abstract;
+using FatihAltuntasBlog.Services.Utilities;
 using FatihAltuntasBlog.Shared.Utilities.Results.Abstract;
 using FatihAltuntasBlog.Shared.Utilities.Results.ComplexTypes;
 using FatihAltuntasBlog.Shared.Utilities.Results.Concrete;
@@ -33,7 +34,7 @@ namespace FatihAltuntasBlog.Services.Concrete
             articleEntity.Id = 1;
             await _unitOfWork.Articles.AddAsync(articleEntity);
             await _unitOfWork.SaveAsync();
-            return new Result(ResultStatus.Success, $"{articleAddDto.Title} başlıklı makale oluşturuldu");
+            return new Result(ResultStatus.Success, Messages.Article.Add(articleAddDto.Title));
         }
 
         public async Task<IResult> Delete(int articleId, string modifiedByName)
@@ -46,9 +47,9 @@ namespace FatihAltuntasBlog.Services.Concrete
                 articleEntity.ModifiedDate = DateTime.Now;
                 await _unitOfWork.Articles.UpdateAsync(articleEntity);
                 await _unitOfWork.SaveAsync();
-                return new Result(ResultStatus.Success, "Makale başarıyla silindi");
+                return new Result(ResultStatus.Success, Messages.Article.Delete(articleEntity.Title));
             }
-            return new Result(ResultStatus.Error, "Böyle bir makale bulunamadı");
+            return new Result(ResultStatus.Error, Messages.Article.NotFound(true));
         }
 
         public async Task<IDataResult<ArticleDto>> Get(int articleId)
@@ -60,7 +61,7 @@ namespace FatihAltuntasBlog.Services.Concrete
                     Article = articleEntity,
                     ResultStatus = ResultStatus.Success
                 });
-            return new DataResult<ArticleDto>(ResultStatus.Error, null, "Böyle bir makale bulunamadı");
+            return new DataResult<ArticleDto>(ResultStatus.Error, null, Messages.Article.NotFound(true));
 
         }
 
@@ -73,7 +74,7 @@ namespace FatihAltuntasBlog.Services.Concrete
                     Articles = articleEntityList,
                     ResultStatus = ResultStatus.Success
                 });
-            return new DataResult<ArticleListDto>(ResultStatus.Error, null, "Makale bulunmamaktadır.");
+            return new DataResult<ArticleListDto>(ResultStatus.Error, null, Messages.Article.NotFound(false));
         }
 
         public async Task<IDataResult<ArticleListDto>> GetAllByCategory(int categoryId)
@@ -85,7 +86,7 @@ namespace FatihAltuntasBlog.Services.Concrete
                     Articles = articleEntityList,
                     ResultStatus = ResultStatus.Success
                 });
-            return new DataResult<ArticleListDto>(ResultStatus.Error, null, "Bu kategoride makale bulunmamaktadır.");
+            return new DataResult<ArticleListDto>(ResultStatus.Error, null, Messages.Article.NotFound(false));
         }
 
         public async Task<IDataResult<ArticleListDto>> GetAllByNonDeleted()
@@ -97,7 +98,7 @@ namespace FatihAltuntasBlog.Services.Concrete
                     Articles = articleEntityList,
                     ResultStatus = ResultStatus.Success
                 });
-            return new DataResult<ArticleListDto>(ResultStatus.Error, null, "Makale bulunamadı.");
+            return new DataResult<ArticleListDto>(ResultStatus.Error, null, Messages.Article.NotFound(false));
         }
 
         public async Task<IDataResult<ArticleListDto>> GetAllByNonDeletedAndActive()
@@ -109,7 +110,7 @@ namespace FatihAltuntasBlog.Services.Concrete
                     Articles = articleEntityList,
                     ResultStatus = ResultStatus.Success
                 });
-            return new DataResult<ArticleListDto>(ResultStatus.Error, null, "Makale bulunamadı.");
+            return new DataResult<ArticleListDto>(ResultStatus.Error, null, Messages.Article.NotFound(false));
         }
 
         public async Task<IResult> HardDelete(int articleId)
@@ -119,9 +120,9 @@ namespace FatihAltuntasBlog.Services.Concrete
             {
                 await _unitOfWork.Articles.DeleteAsync(articleEntity);;
                 await _unitOfWork.SaveAsync();
-                return new Result(ResultStatus.Success, "Makale başarıyla silindi");
+                return new Result(ResultStatus.Success, Messages.Article.HardDelete(articleEntity.Title));
             }
-            return new Result(ResultStatus.Error, "Böyle bir makale bulunamadı");
+            return new Result(ResultStatus.Error, Messages.Article.NotFound(true));
         }
 
         public async Task<IResult> Update(ArticleUpdateDto articleUpdateDto, string modifiedByName)
@@ -130,7 +131,7 @@ namespace FatihAltuntasBlog.Services.Concrete
             articleEntity.ModifiedByName = modifiedByName;
             await _unitOfWork.Articles.UpdateAsync(articleEntity);
             await _unitOfWork.SaveAsync();
-            return new Result(ResultStatus.Success, $"{articleUpdateDto.Title} başlıklı makale güncellendi.");
+            return new Result(ResultStatus.Success, Messages.Article.Update(articleUpdateDto.Title));
         }
     }
 }
