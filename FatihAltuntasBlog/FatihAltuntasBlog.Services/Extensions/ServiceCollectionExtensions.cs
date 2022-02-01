@@ -4,6 +4,7 @@ using FatihAltuntas.Data.Concrete.EntityFramework.Contexts;
 using FatihAltuntasBlog.Entities.Concrete;
 using FatihAltuntasBlog.Services.Abstract;
 using FatihAltuntasBlog.Services.Concrete;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,9 @@ namespace FatihAltuntasBlog.Services.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection LoadMyService(this IServiceCollection serviceCollection)
+        public static IServiceCollection LoadMyService(this IServiceCollection serviceCollection,string connectionString)
         {
-            serviceCollection.AddDbContext<FatihAltuntasBlogContext>();
+            serviceCollection.AddDbContext<FatihAltuntasBlogContext>(option => option.UseSqlServer(connectionString));
             serviceCollection.AddIdentity<User, Role>(opt=> {
                 opt.Password.RequireDigit = false;
                 opt.Password.RequiredLength = 5;
