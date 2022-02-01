@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace FatihAltuntasBlog.Services.Concrete
 {
-    public class CategoryManager : ICategoryService
+    public class CategoryManager : ICategoryManager
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -37,6 +37,32 @@ namespace FatihAltuntasBlog.Services.Concrete
                 Message = Messages.Category.Add(categoryAddDto.Name),
                 ResultStatus = ResultStatus.Success
             }, Messages.Category.Add(categoryAddDto.Name));
+        }
+
+        public async Task<IDataResult<int>> Count()
+        {
+            var count = await _unitOfWork.Categories.CountAsync();
+            if (count > -1)
+            {
+                return new DataResult<int>(ResultStatus.Success, count);
+            }
+            else
+            {
+                return new DataResult<int>(ResultStatus.Error, -1, $"Beklenmeyen bir hata ile karşılaşıldı.");
+            }
+        }
+
+        public async Task<IDataResult<int>> CountByIsNotDeleted()
+        {
+            var count = await _unitOfWork.Articles.CountAsync(x => !x.IsDeleted);
+            if (count > -1)
+            {
+                return new DataResult<int>(ResultStatus.Success, count);
+            }
+            else
+            {
+                return new DataResult<int>(ResultStatus.Error, -1, $"Beklenmeyen bir hata ile karşılaşıldı.");
+            }
         }
 
         public async Task<IDataResult<CategoryDto>> Delete(int categoryId, string modifiedByName)

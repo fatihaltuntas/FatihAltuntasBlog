@@ -19,9 +19,9 @@ namespace FatihAltuntasBlog.Mvc.Areas.Admin.Controllers
 
     public class CategoryController : Controller
     {
-        private readonly ICategoryService _categoryService;
+        private readonly ICategoryManager _categoryService;
 
-        public CategoryController(ICategoryService categoryService)
+        public CategoryController(ICategoryManager categoryService)
         {
             _categoryService = categoryService;
         }

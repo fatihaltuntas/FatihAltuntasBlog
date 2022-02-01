@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace FatihAltuntasBlog.Services.Concrete
 {
-    public class ArticleManager : IArticleService
+    public class ArticleManager : IArticleManager
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -37,10 +37,36 @@ namespace FatihAltuntasBlog.Services.Concrete
             return new Result(ResultStatus.Success, Messages.Article.Add(articleAddDto.Title));
         }
 
+        public async Task<IDataResult<int>> Count()
+        {
+            var count = await _unitOfWork.Articles.CountAsync();
+            if (count > -1)
+            {
+                return new DataResult<int>(ResultStatus.Success, count);
+            }
+            else
+            {
+                return new DataResult<int>(ResultStatus.Error, -1, $"Beklenmeyen bir hata ile karşılaşıldı.");
+            }
+        }
+
+        public async Task<IDataResult<int>> CountByIsNotDeleted()
+        {
+            var count = await _unitOfWork.Articles.CountAsync(x => !x.IsDeleted);
+            if (count > -1)
+            {
+                return new DataResult<int>(ResultStatus.Success, count);
+            }
+            else
+            {
+                return new DataResult<int>(ResultStatus.Error, -1, $"Beklenmeyen bir hata ile karşılaşıldı.");
+            }
+        }
+
         public async Task<IResult> Delete(int articleId, string modifiedByName)
         {
             var articleEntity = await _unitOfWork.Articles.GetAsync(x => x.Id == articleId);
-            if(articleEntity != null)
+            if (articleEntity != null)
             {
                 articleEntity.IsDeleted = true;
                 articleEntity.ModifiedByName = modifiedByName;
@@ -54,7 +80,7 @@ namespace FatihAltuntasBlog.Services.Concrete
 
         public async Task<IDataResult<ArticleDto>> Get(int articleId)
         {
-            var articleEntity = await _unitOfWork.Articles.GetAsync(a => a.Id == articleId,a=> a.User,a => a.Category);
+            var articleEntity = await _unitOfWork.Articles.GetAsync(a => a.Id == articleId, a => a.User, a => a.Category);
             if (articleEntity != null)
                 return new DataResult<ArticleDto>(ResultStatus.Success, new ArticleDto()
                 {
@@ -67,7 +93,7 @@ namespace FatihAltuntasBlog.Services.Concrete
 
         public async Task<IDataResult<ArticleListDto>> GetAll()
         {
-            var articleEntityList = await _unitOfWork.Articles.GetAllAsync(null,a=> a.User,a=> a.Category);
+            var articleEntityList = await _unitOfWork.Articles.GetAllAsync(null, a => a.User, a => a.Category);
             if (articleEntityList.Any())
                 return new DataResult<ArticleListDto>(ResultStatus.Success, new ArticleListDto()
                 {
@@ -79,7 +105,7 @@ namespace FatihAltuntasBlog.Services.Concrete
 
         public async Task<IDataResult<ArticleListDto>> GetAllByCategory(int categoryId)
         {
-            var articleEntityList = await _unitOfWork.Articles.GetAllAsync(a => a.CategoryId == categoryId,x=> x.User,x=> x.Category);
+            var articleEntityList = await _unitOfWork.Articles.GetAllAsync(a => a.CategoryId == categoryId, x => x.User, x => x.Category);
             if (articleEntityList.Any())
                 return new DataResult<ArticleListDto>(ResultStatus.Success, new ArticleListDto()
                 {
@@ -116,9 +142,9 @@ namespace FatihAltuntasBlog.Services.Concrete
         public async Task<IResult> HardDelete(int articleId)
         {
             var articleEntity = await _unitOfWork.Articles.GetAsync(x => x.Id == articleId);
-            if(articleEntity != null)
+            if (articleEntity != null)
             {
-                await _unitOfWork.Articles.DeleteAsync(articleEntity);;
+                await _unitOfWork.Articles.DeleteAsync(articleEntity); ;
                 await _unitOfWork.SaveAsync();
                 return new Result(ResultStatus.Success, Messages.Article.HardDelete(articleEntity.Title));
             }

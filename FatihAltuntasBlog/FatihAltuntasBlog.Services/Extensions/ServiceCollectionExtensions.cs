@@ -31,8 +31,10 @@ namespace FatihAltuntasBlog.Services.Extensions
                 opt.User.RequireUniqueEmail = true;
             }).AddEntityFrameworkStores<FatihAltuntasBlogContext>();
             serviceCollection.AddScoped<IUnitOfWork, UnitOfWork>();
-            serviceCollection.AddScoped<ICategoryService, CategoryManager>();
-            serviceCollection.AddScoped<IArticleService, ArticleManager>();
+            serviceCollection.AddScoped<ICategoryManager, CategoryManager>();
+            serviceCollection.AddScoped<IArticleManager, ArticleManager>();
+            serviceCollection.AddScoped<ICommentManager, CommentManager>();
+
             return serviceCollection;
         }
     }

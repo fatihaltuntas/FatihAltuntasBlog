@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FatihAltuntasBlog.Services.Abstract
 {
-    public interface ICategoryService
+    public interface ICategoryManager
     {
         Task<IDataResult<CategoryDto>> Get(int categoryId);
         Task<IDataResult<CategoryUpdateDto>> GetCategoryUpdateDto(int categoryId);
@@ -19,5 +19,7 @@ namespace FatihAltuntasBlog.Services.Abstract
         Task<IDataResult<CategoryDto>> Delete(int categoryId, string modifiedByName);
         Task<IResult> HardDelete(int categoryId);
         Task<IDataResult<CategoryListDto>> GetAllByNonDeleted();
+        Task<IDataResult<int>> Count();
+        Task<IDataResult<int>> CountByIsNotDeleted();
     }
 }

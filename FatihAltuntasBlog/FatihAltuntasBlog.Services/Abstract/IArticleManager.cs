@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FatihAltuntasBlog.Services.Abstract
 {
-    public interface IArticleService
+    public interface IArticleManager
     {
         Task<IDataResult<ArticleDto>> Get(int articleId);
         Task<IDataResult<ArticleListDto>> GetAll();
@@ -19,5 +19,7 @@ namespace FatihAltuntasBlog.Services.Abstract
         Task<IResult> Update(ArticleUpdateDto articleUpdateDto, string modifiedByName);
         Task<IResult> Delete(int articleId, string modifiedByName);
         Task<IResult> HardDelete(int articleId);
+        Task<IDataResult<int>> Count();
+        Task<IDataResult<int>> CountByIsNotDeleted();
     }
 }
